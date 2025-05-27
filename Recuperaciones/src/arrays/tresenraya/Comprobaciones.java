@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Comprobaciones {
 
-	static char tablero[][] = { { 'X', 'O', 'X' }, { 'O', 'X', 'O' }, { 'O', 'X', 'O' } };
+	static char tablero[][] = new char[3][3];
 
 	public static void inicializarTablero() {
 		for (char[] fila : tablero) {
@@ -20,11 +20,12 @@ public class Comprobaciones {
 	// Comprobación por filas
 	public static boolean filas(char jugador) {
 		int i = 0;
-		int j = 0;
+		int j;
 		boolean res = false;
 		boolean auxRes = true;
 
 		while (i < tablero.length && !res) {
+			j = 0;
 			while (j < tablero[i].length && auxRes) {
 				if (tablero[i][j] != jugador) {
 					auxRes = false;
@@ -40,12 +41,13 @@ public class Comprobaciones {
 
 	// Comprobación por columnas
 	public static boolean columnas(char jugador) {
-		int i = 0;
+		int i;
 		int j = 0;
 		boolean res = false;
 		boolean auxRes = true;
 
-		while (j < tablero[i].length && !res) {
+		while (j < tablero[0].length && !res) {
+			i = 0;
 			while (i < tablero.length && auxRes) {
 				if (tablero[i][j] != jugador) {
 					auxRes = false;
