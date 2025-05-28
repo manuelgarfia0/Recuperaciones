@@ -49,7 +49,7 @@ public class Metodos {
 		int i = obsI - 1;
 		int j;
 
-		if (obsI < 0) {
+		if (i < 0) {
 			i = obsI + 1;
 		}
 
@@ -108,6 +108,66 @@ public class Metodos {
 	}
 
 	public static int mueveJugador(String movimiento) {
-		return posI;
+		int res = 0;
+
+		int moverseI;
+		int moverseJ;
+
+		switch (movimiento.toUpperCase()) {
+		case "ARRIBA" -> {
+			moverseI = posI - 1;
+			moverseJ = posJ;
+
+			verificacionMovimiento();
+		}
+		case "ABAJO" -> {
+			moverseI = posI + 1;
+			moverseJ = posJ;
+
+			verificacionMovimiento();
+		}
+		case "DERECHA" -> {
+			moverseI = posI;
+			moverseJ = posJ + 1;
+
+			// Verificar límites
+			verificacionMovimiento();
+		}
+		case "IZQUIERDA" -> {
+			moverseI = posI;
+			moverseJ = posJ - 1;
+
+			// Verificar límites
+			verificacionMovimiento();
+		}
+		default -> {
+			System.out.println("Movimiento no válido. Usa: ARRIBA, ABAJO, IZQUIERDA, DERECHA");
+			res = -2;
+		}
+		}
+
+		return res;
+	}
+
+	public static int verificacionMovimiento() {
+		int res = 0;
+		int moverseI = 0;
+		int moverseJ = 0;
+
+		if (moverseI >= tablero.length) {
+			System.out.println("No puedes moverte fuera del tablero!");
+			res = -1;
+		} else if (tablero[moverseI][moverseJ] == '*') {
+			System.out.println("¡Hay un obstáculo ahí! No puedes moverte.");
+			res = -1;
+		} else {
+			posI = moverseI;
+			if (tablero[posI][posJ] == 'X') {
+				System.out.println("¡Felicidades! ¡Has encontrado el tesoro!");
+				res = 1;
+			}
+		}
+
+		return res;
 	}
 }

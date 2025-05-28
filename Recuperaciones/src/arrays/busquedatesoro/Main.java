@@ -22,8 +22,8 @@ public class Main {
 		Metodos.generaObstaculos((int) (Math.sqrt(filas * columnas) / 2));
 		Metodos.generaPosicionTesoro();
 		Metodos.generaPosicionJugador();
-		
 		Metodos.pintaTablero();
+		Metodos.verificacionMovimiento();
 
 	}
 
