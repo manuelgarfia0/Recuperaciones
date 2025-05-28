@@ -75,19 +75,24 @@ public class Metodos {
 		do {
 			randI = random.nextInt(0, tablero.length);
 			randJ = random.nextInt(0, tablero[0].length);
-		} while (tablero[posI][posJ] != ' ');
+		} while (tablero[randI][randJ] != ' ');
+
+		posI = randI;
+		posJ = randJ;
 	}
 
 	public static void pintaTablero() {
 		System.out.println("  ");
 		for (int j = 0; j < tablero[0].length; j++) {
-			System.out.print("\t" + (char) (j + 'A'));
+			System.out.print("\t" + j);
+			// En caso de querer poner la columna con letras
+//			System.out.print("\t" + (char) (j + 'A'));
 		}
 
 		System.out.println();
 
 		for (int i = 0; i < tablero.length; i++) {
-			System.out.println(i + 1);
+			System.out.print(i + 1);
 
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (posI == i && posJ == j) {
