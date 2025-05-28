@@ -19,7 +19,10 @@ public class Main {
 		columnas = scanner.nextInt();
 
 		Metodos.inicializaTablero(filas, columnas);
-
+		Metodos.generaObstaculos((int) (Math.sqrt(Metodos.posI * Metodos.posJ) / 2));
+		Metodos.generaPosicionTesoro();
+		Metodos.generaPosicionJugador();
+		
 		Metodos.pintaTablero();
 
 	}

@@ -10,7 +10,7 @@ public class Metodos {
 	public static int posJ;
 
 	public static void inicializaTablero(int numFilas, int numColumnas) {
-		char tablero[][] = new char[numFilas][numColumnas];
+		tablero = new char[numFilas][numColumnas];
 		for (char[] espacios : tablero) {
 			Arrays.fill(espacios, ' ');
 		}
@@ -79,8 +79,9 @@ public class Metodos {
 	}
 
 	public static void pintaTablero() {
+		System.out.println("  ");
 		for (int j = 0; j < tablero[0].length; j++) {
-			System.out.println("\t" + (char) (j + 'A'));
+			System.out.print("\t" + (char) (j + 'A'));
 		}
 
 		System.out.println();
@@ -88,13 +89,13 @@ public class Metodos {
 		for (int i = 0; i < tablero.length; i++) {
 			System.out.println(i + 1);
 
-			for (int j = 0; j < tablero[i].length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
 				if (posI == i && posJ == j) {
-					System.out.println("\t" + 'J');
+					System.out.print("\t" + 'J');
 				} else if (tablero[i][j] == 'X') {
-					System.out.println("\t");
+					System.out.print("\t");
 				} else {
-					System.out.println("\t" + tablero[i][j]);
+					System.out.print("\t" + tablero[i][j]);
 				}
 			}
 			System.out.println();
