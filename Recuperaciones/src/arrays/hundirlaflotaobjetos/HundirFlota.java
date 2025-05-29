@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class HundirFlota {
 
-	static Scanner scanner = new Scanner(System.in);
+	static Scanner reader = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		char[][] tableroMaquina;
@@ -26,9 +26,9 @@ public class HundirFlota {
 
 		System.out.println("BIENVENIDO AL HUNDIR LA FLOTA");
 		System.out.println("Introduzca el número de filas del tablero");
-		filas = scanner.nextInt();
+		filas = reader.nextInt();
 		System.out.println("Introduzca el número de columnas del tablero");
-		columnas = scanner.nextInt();
+		columnas = reader.nextInt();
 		numBarquitos = (int) Math.sqrt(filas * columnas);
 
 		tableroMaquina = creaTablero(filas, columnas);
@@ -43,9 +43,9 @@ public class HundirFlota {
 			System.out.println(jugadorPrincipal);
 
 			System.out.println("Introduzca la fila como letra:");
-			fila = scanner.next().toUpperCase().charAt(0);
+			fila = reader.next().toUpperCase().charAt(0);
 			System.out.println("Introduzca la columna como número:");
-			columna = scanner.nextInt();
+			columna = reader.nextInt();
 
 			hundido = jugadorPrincipal.lanzaBomba(tableroMaquina, fila, columna);
 
@@ -59,7 +59,7 @@ public class HundirFlota {
 
 		System.out.println("ENHORABUENA! HA GANADO " + jugadorPrincipal.getNombre());
 
-		scanner.close();
+		reader.close();
 	}
 
 	public static char[][] creaTablero(int filas, int columnas) {
@@ -92,9 +92,9 @@ public class HundirFlota {
 		boolean hundido = false;
 
 		System.out.println("Introduzca la fila como letra:");
-		fila = scanner.next().toUpperCase().charAt(0);
+		fila = reader.next().toUpperCase().charAt(0);
 		System.out.println("Introduzca la columna como número:");
-		columna = scanner.nextInt();
+		columna = reader.nextInt();
 
 		tableroJugador[fila - 'A'][columna - 1] = tablero[fila - 'A'][columna - 1];
 		if (tablero[fila - 'A'][columna - 1] == 'B') {

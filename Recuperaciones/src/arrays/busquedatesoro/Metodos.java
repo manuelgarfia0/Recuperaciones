@@ -108,51 +108,34 @@ public class Metodos {
 	}
 
 	public static int mueveJugador(String movimiento) {
-		int res = 0;
-		int nuevaI = posI;
-		int nuevaJ = posJ;
+		int res = -1;
 
 		switch (movimiento.toUpperCase()) {
 		case "ARRIBA" -> {
-			nuevaI = posI - 1;
-			res = verificacionMovimiento(nuevaI, nuevaJ);
+			if (posI - 1 >= 0 && tablero[posI - 1][posJ] != '*') {
+				posI--;
+				res = 0;
+			}
 		}
 		case "ABAJO" -> {
-			nuevaI = posI + 1;
-			res = verificacionMovimiento(nuevaI, nuevaJ);
+			if (posI + 1 < tablero.length && tablero[posI + 1][posJ] != '*') {
+				posI++;
+				res = 0;
+			}
 		}
 		case "DERECHA" -> {
-			nuevaJ = posJ + 1;
-			res = verificacionMovimiento(nuevaI, nuevaJ);
+			if (posJ + 1 < tablero[0].length && tablero[posI][posJ + 1] != '*') {
+				posJ++;
+				res = 0;
+			}
 		}
 		case "IZQUIERDA" -> {
-			nuevaJ = posJ - 1;
-			res = verificacionMovimiento(nuevaI, nuevaJ);
-		}
-		default -> {
-			System.out.println("Movimiento no válido. Usa: ARRIBA, ABAJO, IZQUIERDA, DERECHA");
-			res = -2;
-		}
-		}
-
-		return res;
-	}
-
-	public static int verificacionMovimiento(int nuevaI, int nuevaJ) {
-		int res = 0;
-
-		if (nuevaI < 0 || nuevaI >= tablero.length || nuevaJ < 0 || nuevaJ >= tablero[0].length) {
-			System.out.println("No puedes moverte fuera del tablero!");
-			res = -1;
-		} else if (tablero[nuevaI][nuevaJ] == '*') {
-			System.out.println("¡Hay un obstáculo ahí! No puedes moverte.");
-			res = -1;
-		} else {
-			posI = nuevaI;
-			posJ = nuevaJ;
-			if (tablero[posI][posJ] == 'X') {
-				res = 1;
+			if (posJ - 1 >= 0 && tablero[posI][posJ - 1] != '*') {
+				posJ--;
+				res = 0;
 			}
+		}
+		default -> res = -2;
 		}
 
 		return res;
