@@ -1,73 +1,74 @@
 package arrays.busquedatesoro;
 
 import java.util.Scanner;
+import static arrays.busquedatesoro.Metodos.*;
 
 public class Main {
 
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
+		Scanner reader = new Scanner(System.in);
 		int filas;
 		int columnas;
-		boolean juegoActivo = true;
-		int resultadoMovimiento;
+		int numObstaculos = 0;
 		String movimiento;
+		int res;
 
-		System.out.println("BIENVENIDO A LA BUSQUEDA DEL TESORO");
-		System.out.println("Elije el tamaño del tablero: ");
-		System.out.println("Filas: ");
-		filas = scanner.nextInt();
-		System.out.println("Columnas: ");
-		columnas = scanner.nextInt();
-		scanner.nextLine(); // Limpiar buffer
+		System.out.println("BIENVENIDO A LA BÚSQUEDA DEL TESORO");
 
-		// Inicializar el juego
+		do {
+			// Seguimos pidiendo filas mientras el valor introducido sea inferior a 2
+			System.out.println("Introduzca el número de filas del tablero. Mínimo 2:");
+			filas = reader.nextInt();
+		} while (filas < 2);
+
+		do {
+			// Seguimos pidiendo columnas mientras el valor introducido sea inferior a 2
+			System.out.println("Introduzca el número de filas del tablero. Mínimo 2:");
+			columnas = reader.nextInt();
+		} while (columnas < 2);
+
+		// Limpiamos buffer por si acaso
+		reader.nextLine();
+
+		// Creamos tablero
 		Metodos.inicializaTablero(filas, columnas);
-		Metodos.generaObstaculos((int) (Math.sqrt(filas * columnas) / 2));
-		Metodos.generaPosicionTesoro();
-		Metodos.generaPosicionJugador();
 
-		System.out.println("\n¡Juego iniciado!");
-		System.out.println("Encuentra el tesoro (X) moviendo al jugador (J)");
-		System.out.println("Los obstáculos están marcados con (*)");
-		System.out.println("Comandos: ARRIBA, ABAJO, IZQUIERDA, DERECHA, SALIR\n");
+		// Generamos posición del tesoro
+		generaPosicionTesoro();
 
-		// Bucle principal del juego
-		while (juegoActivo) {
+		// Calculamos el número de obstáculos que tendrá nuestro juego
+		numObstaculos = (int) Math.sqrt(filas * columnas) / 2;
 
-			// Mostrar tablero actual
-			Metodos.pintaTablero();
+		// Colocamos los obstáculos en el tablero
+		generaObstaculos(numObstaculos);
 
-			// Solicitar movimiento
-			System.out.print("\nIngresa tu movimiento: ");
-			movimiento = scanner.nextLine().trim();
+		// Calculamos la posición del jugador
+		generaPosicionJugador();
 
-			// Verificar si quiere salir
-			if (movimiento.equalsIgnoreCase("SALIR")) {
-				juegoActivo = false;
-				System.out.println("¡Gracias por jugar!");
-			} else {
-				// Procesar movimiento
-				resultadoMovimiento = Metodos.mueveJugador(movimiento);
+		// El jugador se va a estar moviendo hasta que encuentre el tesoro, por lo que
+		// las siguientes instrucciones deben ir en un bucle
+		do {
+			// Pintamos el tablero para saber cómo queda
+			pintaTablero();
 
-				// Evaluar resultado del movimiento
-				if (resultadoMovimiento == 1) {
-					// Tesoro encontrado
-					juegoActivo = false;
-					Metodos.pintaTablero();
-					System.out.println("\n¡FELICIDADES! ¡HAS ENCONTRADO EL TESORO!");
-				} else if (resultadoMovimiento == -1) {
-					// Movimiento inválido (obstáculo o fuera de límites)
-					System.out.println("Intenta otro movimiento.");
-				} else if (resultadoMovimiento == -2) {
-					// Comando no reconocido
-					System.out.println("Comandos válidos: ARRIBA, ABAJO, IZQUIERDA, DERECHA, SALIR");
-				}
-				// Si resultadoMovimiento == 0, el movimiento fue exitoso y continúa el juego
+			// Comenzamos preguntando al jugador hacia dónde se quiere mover.
+			System.out.println("¿Hacia dónde te quieres mover? ARRIBA, ABAJO, IZQUIERDA, DERECHA");
+			movimiento = reader.next();
+
+			// Movemos al jugador y recogemos el resultado del movimiento
+			res = mueveJugador(movimiento);
+			if (res == -1) {
+				System.out.println("Movimiento no permitido: fuera del tablero u obstáculo");
+			} else if (res == -2) {
+				System.out.println("No entiendo el movimiento");
 			}
-		}
+		} while (tablero[posI][posJ] != 'X');
 
-		scanner.close();
+		System.out.println("¡ENCONTRASTE EL TESORO!");
+		pintaTablero();
+		reader.close();
 	}
+
 }
