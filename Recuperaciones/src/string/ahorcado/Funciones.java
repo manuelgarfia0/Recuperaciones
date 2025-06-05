@@ -28,6 +28,12 @@ public class Funciones {
 	static boolean compruebaLetra(char letra) {
 		boolean res = false;
 		char nuevaLetra = Character.toLowerCase(letra);
+
+		// Verificar si la letra ya fue probada
+		if (palabraPista.indexOf(nuevaLetra) >= 0 || noAcertadas.indexOf(nuevaLetra) >= 0) {
+			return true; // No cuenta como intento si ya fue probada
+		}
+
 		char[] arrayPista = palabraPista.toCharArray();
 
 		int pos = palabraSecreta.indexOf(nuevaLetra);
@@ -37,7 +43,7 @@ public class Funciones {
 		} else {
 			res = true;
 			while (pos >= 0) {
-				arrayPista[pos] = letra;
+				arrayPista[pos] = nuevaLetra;
 				pos = palabraSecreta.indexOf(nuevaLetra, pos + 1);
 			}
 		}
@@ -52,10 +58,5 @@ public class Funciones {
 		if (nuevaPalabra.equals(palabraSecreta)) {
 			palabraPista = palabraSecreta;
 		}
-	}
-
-	static void pintaPista() {
-		System.out.println(noAcertadas);
-		System.out.println(palabraPista);
 	}
 }
