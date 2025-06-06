@@ -58,13 +58,13 @@ class FuncionesCriptograma {
 
 	// Función para codificar la frase
 	static void codificaFrase() {
-		StringBuilder sb = new StringBuilder();
+		String resultado = "";
 
 		for (int k = 0; k < fraseReal.length(); k++) {
 			char letra = fraseReal.charAt(k);
 
 			if (letra == ' ') {
-				sb.append("  "); // Dos espacios para representar un espacio real
+				resultado = resultado + "  "; // Dos espacios para representar un espacio real
 			} else {
 				// Buscar la letra en el array abecedario
 				boolean encontrada = false;
@@ -73,7 +73,7 @@ class FuncionesCriptograma {
 					int j = 0;
 					while (j < 9 && !encontrada) {
 						if (abecedario[i][j] == letra) {
-							sb.append(i).append(j).append(" ");
+							resultado = resultado + i + j + " ";
 							encontrada = true;
 						}
 						j++;
@@ -83,7 +83,12 @@ class FuncionesCriptograma {
 			}
 		}
 
-		fraseCodificada = sb.toString().trim();
+		// Eliminar espacio final si existe
+		if (resultado.length() > 0 && resultado.charAt(resultado.length() - 1) == ' ') {
+			resultado = resultado.substring(0, resultado.length() - 1);
+		}
+
+		fraseCodificada = resultado;
 	}
 
 	// Función para comprobar si un código corresponde a una letra
@@ -109,21 +114,21 @@ class FuncionesCriptograma {
 				if (abecedario[fila][columna] == letra) {
 					// Sustituir todas las ocurrencias del código por la letra
 					String[] partes = fraseCodificada.split(" ");
-					StringBuilder sb = new StringBuilder();
+					String nuevaCodificacion = "";
 
 					for (int i = 0; i < partes.length; i++) {
 						if (i > 0) {
-							sb.append(" ");
+							nuevaCodificacion = nuevaCodificacion + " ";
 						}
 
 						if (partes[i].equals(codigo)) {
-							sb.append(letra);
+							nuevaCodificacion = nuevaCodificacion + letra;
 						} else {
-							sb.append(partes[i]);
+							nuevaCodificacion = nuevaCodificacion + partes[i];
 						}
 					}
 
-					fraseCodificada = sb.toString();
+					fraseCodificada = nuevaCodificacion;
 					resultado = true;
 				}
 			}
@@ -141,14 +146,14 @@ class FuncionesCriptograma {
 		// Quitar espacios de fraseReal
 		for (int i = 0; i < fraseReal.length(); i++) {
 			if (fraseReal.charAt(i) != ' ') {
-				fraseSinEspacios += fraseReal.charAt(i);
+				fraseSinEspacios = fraseSinEspacios + fraseReal.charAt(i);
 			}
 		}
 
 		// Quitar espacios de fraseCodificada
 		for (int i = 0; i < fraseCodificada.length(); i++) {
 			if (fraseCodificada.charAt(i) != ' ') {
-				codificadaSinEspacios += fraseCodificada.charAt(i);
+				codificadaSinEspacios = codificadaSinEspacios + fraseCodificada.charAt(i);
 			}
 		}
 

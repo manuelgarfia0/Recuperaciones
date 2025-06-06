@@ -36,26 +36,25 @@ public class EscaleraPalabras {
 			// Verificar longitud de 4 letras
 			if (intento.length() != 4) {
 				System.out.println("La palabra debe tener exactamente 4 letras. Inténtalo de nuevo.\n");
-				continue;
+			} else {
+				// Verificar si el intento es correcto
+				if (!JuegoEscalera.compruebaIntento(intento)) {
+					System.out.println(
+							"Intento erróneo. Solo puedes cambiar una letra respecto a la palabra anterior.\n");
+				} else {
+					// El intento es correcto, añadirlo a la jugada
+					JuegoEscalera.agregarIntento(intento);
+					intentosRealizados++;
+
+					// Verificar si ha alcanzado la palabra objetivo
+					if (intento.equals(JuegoEscalera.getPalabraObjetivo())) {
+						hasGanado = true;
+						juegoTerminado = true;
+					}
+
+					System.out.println("¡Bien! Intento " + intentosRealizados + " de " + MAX_INTENTOS + "\n");
+				}
 			}
-
-			// Verificar si el intento es correcto
-			if (!JuegoEscalera.compruebaIntento(intento)) {
-				System.out.println("Intento erróneo. Solo puedes cambiar una letra respecto a la palabra anterior.\n");
-				continue;
-			}
-
-			// El intento es correcto, añadirlo a la jugada
-			JuegoEscalera.agregarIntento(intento);
-			intentosRealizados++;
-
-			// Verificar si ha alcanzado la palabra objetivo
-			if (intento.equals(JuegoEscalera.getPalabraObjetivo())) {
-				hasGanado = true;
-				juegoTerminado = true;
-			}
-
-			System.out.println("¡Bien! Intento " + intentosRealizados + " de " + MAX_INTENTOS + "\n");
 		}
 
 		// Mostrar resultado final
