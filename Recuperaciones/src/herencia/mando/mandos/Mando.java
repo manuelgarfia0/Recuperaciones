@@ -65,8 +65,34 @@ public class Mando implements Comparable<Mando> {
 
 	@Override
 	public int compareTo(Mando o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return modelo.compareToIgnoreCase(o.modelo);
+	}
+
+	/**
+	 * @return Devuelve una cadena con la información del mando
+	 */
+	@Override
+	public String toString() {
+		String res = "Modelo: " + modelo + "\n";
+		res += "Altura: " + altura + "\n";
+		res += "Anchura: " + anchura + "\n";
+		res += "Precio: " + precio + "\n";
+		res += encendido ? "Encendido" : "Apagado" + "\n";
+
+		return res;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean res = false;
+
+		if (obj instanceof Mando nuevoMando) {
+			if (modelo.equals(nuevoMando.modelo)) {
+				res = true;
+			}
+		}
+
+		return res;
 	}
 
 }

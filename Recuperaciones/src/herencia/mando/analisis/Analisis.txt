@@ -38,8 +38,8 @@ class MandoTelevision extends Mando implements Volumen
 	+ bajarCanal()
 	
 	override:
-		+ void subirVolumen()
-		+ void bajarVolumen()
+		+ boolean subirVolumen()
+		+ boolean bajarVolumen()
 		+ toString()
 
 class MandoMinicadena extends Mando implements Volumen
@@ -51,8 +51,8 @@ class MandoMinicadena extends Mando implements Volumen
 	+ getVolumen()
 	
 	override:
-		+ void subirVolumen()
-		+ void bajarVolumen()
+		+ boolean subirVolumen()
+		+ boolean bajarVolumen()
 		+ toString()
 
 class MandoAspiradora extends Mando implements Velocidad
@@ -64,8 +64,8 @@ class MandoAspiradora extends Mando implements Velocidad
 	+ getVelocidad()
 	
 	override:
-		+ void subirVelocidad()
-		+ void bajarVelocidad()
+		+ boolean subirVelocidad()
+		+ boolean bajarVelocidad()
 		+ toString()
 		
 class MandoAireAcondicionado extends Mando implements Velocidad
@@ -86,8 +86,8 @@ class MandoAireAcondicionado extends Mando implements Velocidad
 	+ bajarTemperatura()
 	
 	override:
-		+ void subirVelocidad()
-		+ void bajarVelocidad()
+		+ boolean subirVelocidad()
+		+ boolean bajarVelocidad()
 		+ toString()
 		
 class ComparaPrecio implements Comparator
@@ -95,9 +95,9 @@ class ComparaPrecio implements Comparator
 class ModeloException extends Exception
 
 interface Volumen 
-	+ void subirVolumen()
-	+ void bajarVolumen()
+	+ boolean subirVolumen()
+	+ boolean bajarVolumen()
 
 interface Velocidad
-	+ void subirVelocidad()
-	+ void bajarVelocidad()
+	+ boolean subirVelocidad()
+	+ boolean bajarVelocidad()
