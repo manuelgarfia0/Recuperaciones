@@ -8,9 +8,4 @@ public class Rey extends PiezaAjedrez {
 		super(posicionX, posicionY, color, "Rey");
 	}
 
-	@Override
-	public boolean moverA(char posicionX, int posicionY) {
-		// Movimiento básico del rey (no implementado completamente)
-		return false;
-	}
 }

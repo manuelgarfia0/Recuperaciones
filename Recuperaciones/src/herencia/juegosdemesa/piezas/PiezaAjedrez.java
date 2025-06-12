@@ -1,9 +1,8 @@
 package herencia.juegosdemesa.piezas;
 
 import herencia.juegosdemesa.enumerador.Color;
-import herencia.juegosdemesa.interfaz.Movil;
 
-public abstract class PiezaAjedrez extends Pieza implements Movil {
+public abstract class PiezaAjedrez extends Pieza {
 
 	protected String nombre;
 

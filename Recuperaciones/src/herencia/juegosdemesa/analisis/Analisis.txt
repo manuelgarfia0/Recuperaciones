@@ -20,7 +20,7 @@ abstract class Pieza implements Comparable<Pieza>
 		+ int compareTo(Pieza o)
 		+ boolean equals(Object obj)
 
-abstract class PiezaAjedrez extends Pieza implements Movil
+abstract class PiezaAjedrez extends Pieza
 	protected String nombre
 	
 	+ PiezaAjedrez(char posicionX, int posicionY, Color color, String nombre)
@@ -30,8 +30,7 @@ abstract class PiezaAjedrez extends Pieza implements Movil
 
 class Peon extends PiezaAjedrez
 	+ Peon(char posicionX, int posicionY, Color color)
-	override:
-		+ boolean moverA(char posicionX, int posicionY)
+
 
 class Torre extends PiezaAjedrez implements Movil
 	+ Torre(char posicionX, int posicionY, Color color)
@@ -40,23 +39,19 @@ class Torre extends PiezaAjedrez implements Movil
 
 class Alfil extends PiezaAjedrez
 	+ Alfil(char posicionX, int posicionY, Color color)
-	override: 
-		+ boolean moverA(char posicionX, int posicionY)
+
 
 class Caballo extends PiezaAjedrez
 	+ Caballo(char posicionX, int posicionY, Color color)
-	override: 
-		+ boolean moverA(char posicionX, int posicionY)
+
 
 class Dama extends PiezaAjedrez
 	+ Dama(char posicionX, int posicionY, Color color)
-	override: 
-		+ boolean moverA(char posicionX, int posicionY)
+
 
 class Rey extends PiezaAjedrez
 	+ Rey(char posicionX, int posicionY, Color color)
-	override: 
-		+ boolean moverA(char posicionX, int posicionY)
+
 
 class PiezaDamas extends Pieza implements Movil
 	+ PiezaDamas(char posicionX, int posicionY, Color color)

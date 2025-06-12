@@ -1,8 +1,9 @@
 package herencia.juegosdemesa.piezas;
 
 import herencia.juegosdemesa.enumerador.Color;
+import herencia.juegosdemesa.interfaz.Movil;
 
-public class Torre extends PiezaAjedrez {
+public class Torre extends PiezaAjedrez implements Movil {
 
 	public Torre(char posicionX, int posicionY, Color color) {
 		super(posicionX, posicionY, color, "Torre");

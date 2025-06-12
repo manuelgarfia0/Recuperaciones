@@ -8,9 +8,4 @@ public class Dama extends PiezaAjedrez {
 		super(posicionX, posicionY, color, "Dama");
 	}
 
-	@Override
-	public boolean moverA(char posicionX, int posicionY) {
-		// Movimiento básico de la dama (no implementado completamente)
-		return false;
-	}
 }

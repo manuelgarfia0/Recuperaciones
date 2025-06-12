@@ -8,9 +8,4 @@ public class Caballo extends PiezaAjedrez {
 		super(posicionX, posicionY, color, "Caballo");
 	}
 
-	@Override
-	public boolean moverA(char posicionX, int posicionY) {
-		// Movimiento básico del caballo (no implementado completamente)
-		return false;
-	}
 }
