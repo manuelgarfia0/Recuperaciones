@@ -38,7 +38,8 @@ public class HundirFlota {
 		generarBarquitos(tableroMaquina, numBarquitos);
 		jugadorPrincipal = jug1;
 
-		while (jugadorPrincipal.getContHundidos() < numBarquitos) {
+		while (jugadorPrincipal.getContHundidos() < numBarquitos
+				&& (jugadorPrincipal == jug1 ? jug2.getContHundidos() : jug1.getContHundidos()) < numBarquitos) {
 
 			System.out.println(jugadorPrincipal);
 
@@ -49,15 +50,19 @@ public class HundirFlota {
 
 			hundido = jugadorPrincipal.lanzaBomba(tableroMaquina, fila, columna);
 
-			if (!hundido) {
-				System.out.println("AGUA");
-				jugadorPrincipal = (jugadorPrincipal == jug1) ? jug2 : jug1;
-			} else {
+			if (hundido) {
 				System.out.println("HUNDIDO");
+			} else {
+				System.out.println("AGUA");
 			}
+
+			// Siempre cambiar de turno, independientemente del resultado
+			jugadorPrincipal = (jugadorPrincipal == jug1) ? jug2 : jug1;
 		}
 
-		System.out.println("ENHORABUENA! HA GANADO " + jugadorPrincipal.getNombre());
+		// Determinar el ganador basándose en quién tiene más barcos hundidos
+		JugadorFlota ganador = (jug1.getContHundidos() > jug2.getContHundidos()) ? jug1 : jug2;
+		System.out.println("ENHORABUENA! HA GANADO " + ganador.getNombre());
 
 		reader.close();
 	}
