@@ -1,1 +1,80 @@
-abstract class Pieza
+enum Color {BLANCO, NEGRO, GRIS}
+enum Direccion {ARRIBA, ABAJO, IZQUIERDA, DERECHA}
+
+interface Movil
+	+ boolean moverA(char posicionX, int posicionY)
+
+abstract class Pieza implements Comparable<Pieza>
+	protected int posicionX
+	protected int posicionY
+	protected Color color;
+	
+	+ Pieza(char posicionX, int posicionY, Color color)
+	+ int getPosicionX()
+	+ int getPosicionY()
+	+ Color getColor()
+	+ int convertirLetraANumero(char letra)
+	+ int convertirNumeroALetra(int numero)
+	+ abstract String toString();
+	override:
+		+ int compareTo(Pieza o)
+		+ boolean equals(Object obj)
+
+abstract class PiezaAjedrez extends Pieza implements Movil
+	protected String nombre
+	
+	+ PiezaAjedrez(char posicionX, int posicionY, Color color, String nombre)
+	+ String getNombre()
+	override:
+		+ String toString()
+
+class Peon extends PiezaAjedrez
+	+ Peon(char posicionX, int posicionY, Color color)
+	override:
+		+ boolean moverA(char posicionX, int posicionY)
+
+class Torre extends PiezaAjedrez implements Movil
+	+ Torre(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+
+class Alfil extends PiezaAjedrez
+	+ Alfil(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+
+class Caballo extends PiezaAjedrez
+	+ Caballo(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+
+class Dama extends PiezaAjedrez
+	+ Dama(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+
+class Rey extends PiezaAjedrez
+	+ Rey(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+
+class PiezaDamas extends Pieza implements Movil
+	+ PiezaDamas(char posicionX, int posicionY, Color color)
+	override: 
+		+ boolean moverA(char posicionX, int posicionY)
+		+ String toString()
+
+class PiezaHundirFlota extends PiezaAjedrez
+	- int tamaño
+	- Direccion direccion
+	
+	+ PiezaHundirFlota(char posicionX, int posicionY, Color color, int tamaño, Direccion direccion)
+	+ int getTamaño()
+	+ Direccion getDireccion()
+	override: 
+		+ String toString()
+
+class PiezaGo extends Pieza
+	+ PiezaGo(char posicionX, int posicionY, Color color)
+	override: 
+		+ String toString()

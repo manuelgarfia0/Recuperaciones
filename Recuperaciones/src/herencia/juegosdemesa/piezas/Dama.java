@@ -1,6 +1,6 @@
 package herencia.juegosdemesa.piezas;
 
-import herencia.juegosdemesa.enums.Color;
+import herencia.juegosdemesa.enumerador.Color;
 
 public class Dama extends PiezaAjedrez {
 

@@ -2,8 +2,8 @@ package herencia.juegosdemesa.main;
 
 import java.util.Arrays;
 
-import herencia.juegosdemesa.enums.Color;
-import herencia.juegosdemesa.enums.Direccion;
+import herencia.juegosdemesa.enumerador.Color;
+import herencia.juegosdemesa.enumerador.Direccion;
 import herencia.juegosdemesa.piezas.Caballo;
 import herencia.juegosdemesa.piezas.Pieza;
 import herencia.juegosdemesa.piezas.PiezaAjedrez;

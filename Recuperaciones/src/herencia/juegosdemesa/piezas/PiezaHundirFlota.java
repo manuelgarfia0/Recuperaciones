@@ -1,21 +1,21 @@
 package herencia.juegosdemesa.piezas;
 
-import herencia.juegosdemesa.enums.Color;
-import herencia.juegosdemesa.enums.Direccion;
+import herencia.juegosdemesa.enumerador.Color;
+import herencia.juegosdemesa.enumerador.Direccion;
 
 public class PiezaHundirFlota extends Pieza {
 
-	private int tamano;
+	private int tamaño;
 	private Direccion direccion;
 
-	public PiezaHundirFlota(char posicionX, int posicionY, Color color, int tamano, Direccion direccion) {
+	public PiezaHundirFlota(char posicionX, int posicionY, Color color, int tamaño, Direccion direccion) {
 		super(posicionX, posicionY, color);
-		this.tamano = tamano;
+		this.tamaño = tamaño;
 		this.direccion = direccion;
 	}
 
-	public int getTamano() {
-		return tamano;
+	public int getTamaño() {
+		return tamaño;
 	}
 
 	public Direccion getDireccion() {
@@ -24,7 +24,7 @@ public class PiezaHundirFlota extends Pieza {
 
 	@Override
 	public String toString() {
-		return "HF: " + tamano + " " + direccion + " " + color + " (" + posicionY + ", "
+		return "HF: " + tamaño + " " + direccion + " " + color + " (" + posicionY + ", "
 				+ convertirNumeroALetra(posicionX) + ")";
 	}
 }

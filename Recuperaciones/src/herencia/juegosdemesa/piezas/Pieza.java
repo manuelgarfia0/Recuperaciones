@@ -1,6 +1,6 @@
 package herencia.juegosdemesa.piezas;
 
-import herencia.juegosdemesa.enums.Color;
+import herencia.juegosdemesa.enumerador.Color;
 
 public abstract class Pieza implements Comparable<Pieza> {
 
@@ -12,24 +12,6 @@ public abstract class Pieza implements Comparable<Pieza> {
 		this.posicionX = convertirLetraANumero(posicionX);
 		this.posicionY = posicionY;
 		this.color = color;
-	}
-
-	protected int convertirLetraANumero(char letra) {
-		int resultado = 0;
-		if (letra >= 'a' && letra <= 'h') {
-			resultado = letra - 'a' + 1;
-		} else if (letra >= 'A' && letra <= 'H') {
-			resultado = letra - 'A' + 1;
-		}
-		return resultado;
-	}
-
-	protected char convertirNumeroALetra(int numero) {
-		char resultado = 'a';
-		if (numero >= 1 && numero <= 8) {
-			resultado = (char) ('a' + numero - 1);
-		}
-		return resultado;
 	}
 
 	public int getPosicionX() {
@@ -44,11 +26,29 @@ public abstract class Pieza implements Comparable<Pieza> {
 		return color;
 	}
 
+	public int convertirLetraANumero(char letra) {
+		int resultado = 0;
+		if (letra >= 'a' && letra <= 'h') {
+			resultado = letra - 'a' + 1;
+		} else if (letra >= 'A' && letra <= 'H') {
+			resultado = letra - 'A' + 1;
+		}
+		return resultado;
+	}
+
+	public char convertirNumeroALetra(int numero) {
+		char resultado = 'a';
+		if (numero >= 1 && numero <= 8) {
+			resultado = (char) ('a' + numero - 1);
+		}
+		return resultado;
+	}
+
 	@Override
-	public int compareTo(Pieza otra) {
-		int resultado = Integer.compare(this.posicionY, otra.posicionY);
+	public int compareTo(Pieza o) {
+		int resultado = Integer.compare(this.posicionY, o.posicionY);
 		if (resultado == 0) {
-			resultado = Integer.compare(this.posicionX, otra.posicionX);
+			resultado = Integer.compare(this.posicionX, o.posicionX);
 		}
 		return resultado;
 	}
@@ -56,16 +56,9 @@ public abstract class Pieza implements Comparable<Pieza> {
 	@Override
 	public boolean equals(Object obj) {
 		boolean resultado = false;
-//		if (this == obj) {
-//			resultado = true;
-//		} else if (obj != null && this.getClass() == obj.getClass()) {
-//			Pieza otra = (Pieza) obj;
-//			if (this.posicionX == otra.posicionX && this.posicionY == otra.posicionY) {
-//				resultado = true;
-//			}
-//		}
 		if (obj instanceof Pieza nuevaPieza) {
-			if (posicionX == nuevaPieza.posicionX && posicionY == nuevaPieza.posicionY) {
+			if (getClass().equals(nuevaPieza.getClass()) && posicionX == nuevaPieza.posicionX
+					&& posicionY == nuevaPieza.posicionY) {
 				resultado = true;
 			}
 		}

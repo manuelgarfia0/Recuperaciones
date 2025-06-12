@@ -1,6 +1,6 @@
 package herencia.juegosdemesa.piezas;
 
-import herencia.juegosdemesa.enums.Color;
+import herencia.juegosdemesa.enumerador.Color;
 import herencia.juegosdemesa.interfaz.Movil;
 
 public abstract class PiezaAjedrez extends Pieza implements Movil {
